@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -302,9 +303,10 @@ export const ChatbotSection = () => {
                     }
                   `}
                 >
-
+                  <ReactMarkdown>
                   {m.content}
-
+                  </ReactMarkdown>
+                  
                 </div>
 
               </div>
