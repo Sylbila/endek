@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MotifCard } from "./MotifCard.jsx";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -17,13 +17,19 @@ import geoImg from "@/asset/geometris/1geometris.jpg";
 
 export const CategoryDetail = ({ category, onBack }) => {
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
+
     document
       .getElementById("kategori-detail")
       ?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+
+    setCurrentPage(1);
+
   }, [category]);
 
   /* HERO IMAGE */
@@ -47,6 +53,18 @@ export const CategoryDetail = ({ category, onBack }) => {
       : category?.key === "fauna"
       ? faunaMotifs
       : geometrisMotifs;
+
+  /* PAGINATION */
+
+  const motifsPerPage = 12;
+
+  const lastIndex = currentPage * motifsPerPage;
+
+  const firstIndex = lastIndex - motifsPerPage;
+
+  const currentMotifs = motifs.slice(firstIndex, lastIndex);
+
+  const totalPages = Math.ceil(motifs.length / motifsPerPage);
 
   return (
     <section
@@ -117,13 +135,56 @@ export const CategoryDetail = ({ category, onBack }) => {
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
-          {motifs.map((m, i) => (
+          {currentMotifs.map((m, i) => (
             <MotifCard
               key={i}
               motif={m}
               index={i}
             />
           ))}
+
+        </div>
+
+        {/* PAGINATION */}
+        <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
+
+          {Array.from({ length: totalPages }).map((_, i) => (
+
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={
+                currentPage === i + 1
+                  ? "w-12 h-12 rounded-lg border font-semibold transition-all bg-pink-600 text-white border-pink-600"
+                  : "w-12 h-12 rounded-lg border font-semibold transition-all bg-white text-pink-600 border-pink-300 hover:bg-pink-50"
+              }
+            >
+              {i + 1}
+            </button>
+
+          ))}
+
+          {/* NEXT */}
+          <button
+            onClick={() => {
+              if (currentPage < totalPages) {
+                setCurrentPage(currentPage + 1);
+              }
+            }}
+            className="
+              w-12
+              h-12
+              rounded-lg
+              border
+              bg-white
+              text-pink-600
+              border-pink-300
+              hover:bg-pink-50
+              font-bold
+            "
+          >
+            »
+          </button>
 
         </div>
 
