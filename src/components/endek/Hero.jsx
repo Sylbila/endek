@@ -38,13 +38,13 @@ export const Hero = () => {
           {/* TITLE */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
 
-            Website Konservasi{" "}
+            Website Pengenalan Motif{" "}
 
             <span className="text-gradient-gold">
               Kain Endek Bali
             </span>
 
-            {" "}Berbasis Generative AI sebagai Media Pelestarian Budaya
+            {" "}Berbasis Generative AI 
           </h1>
 
           {/* DIVIDER */}
@@ -53,7 +53,7 @@ export const Hero = () => {
           {/* DESCRIPTION */}
           <p className="text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed mb-10">
 
-            Menghubungkan Warisan Budaya Bali dengan Teknologi Generative AI —
+            Menghubungkan Warisan Budaya Bali dengan Teknologi Generative AI
             mendokumentasikan, mengedukasi, dan melestarikan motif Kain Endek
             untuk generasi mendatang.
           </p>
